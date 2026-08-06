@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <symbol class="search-icon" viewBox="0 0 21 21">
+        <path stroke="#b3b3b3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19.25 19.25 14.9 14.9m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0"/>
+    </symbol>
+    <symbol class="arrow-left" viewBox="0 0 48 48">
+        <path stroke="#1e1e1e" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M45.167 23.583H2M23.583 2 2 23.583l21.583 21.584"/>
+    </symbol>
+    <symbol class="arrow-right" viewBox="0 0 48 48">
+        <path stroke="#1e1e1e" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M2 23.583h43.167M23.583 45.167l21.584-21.584L23.583 2"/>
+    </symbol>
+</svg>
