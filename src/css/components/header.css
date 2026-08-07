@@ -1,0 +1,34 @@
+.header {
+  background-color: var(--primary-color);
+  width: 100%;
+  height: 60px;
+}
+
+.header nav {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header__list {
+  display: flex;
+  align-items: center;
+}
+
+.header__link {
+  font-family: var(--primary-font-family);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  color: white;
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.75rem;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.header__link:hover {
+  background-color: #eaeaea;
+  color: black;
+}
