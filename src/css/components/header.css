@@ -1,13 +1,13 @@
 .header {
   background-color: var(--primary-color);
   width: 100%;
-  height: 60px;
-}
-
-.header nav {
-  height: 100%;
+  min-height: 4rem;
   display: flex;
   justify-content: center;
+}
+
+.header__nav {
+  display: flex;
 }
 
 .header__list {
@@ -17,7 +17,7 @@
 
 .header__link {
   font-family: var(--primary-font-family);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   text-decoration: none;
   color: white;
@@ -31,4 +31,28 @@
 .header__link:hover {
   background-color: #eaeaea;
   color: black;
+}
+
+@media (width >= 30rem) {
+  .header__list {
+    gap: var(--space-lg);
+  }
+
+  .header__link {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (width >= 48rem) {
+  .header {
+    justify-content: start;
+  }
+
+  .header__nav {
+    padding-left: 1.25rem;
+  }
+
+  .header__link {
+    font-size: var(--font-size-md);
+  }
 }
