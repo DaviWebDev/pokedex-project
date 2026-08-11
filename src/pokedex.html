@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/base/variables.css" />
     <link rel="stylesheet" href="./css/base/global.css" />
     <link rel="stylesheet" href="./css/components/header.css" />
+    <link rel="stylesheet" href="./css/components/search-bar.css" />
     <link rel="stylesheet" href="./css/pages/pokedex.css" />
   </head>
   <body>
@@ -33,5 +34,18 @@
         </ul>
       </nav>
     </header>
+    <main class="pokedex">
+      <div class="search">
+        <div class="search__bar" role="search">
+          <label for="search-bar" class="sr-only">Search Pokémon</label>
+          <input type="search" id="search-bar" class="search__input" placeholder="Search" />
+          <svg class="search__icon" aria-hidden="true">
+            <use href="./assets/sprites.svg#search-icon"></use>
+          </svg>
+        </div>
+        <div class="search__suggestions"></div>
+      </div>
+      <div class="pokedex__grid"></div>
+    </main>
   </body>
 </html>
