@@ -1,10 +1,10 @@
 :root {
   --primary-font-family: "Kanit", sans-serif;
   --primary-color: #ff5f25;
-  --secondary-color: #fffadc;
+  --secondary-color: #fff4b8;
   --search-bar-color: #d9d9d9;
   --color-black: black;
-  --cor-dinamica: 200;
+  --white-color: white;
   --font-size-xs: 0.75rem; /* 12px */
   --font-size-sm: 0.875rem; /* 14px */
   --font-size-base: 1rem; /* 16px */
@@ -27,4 +27,25 @@
   --radius-md: 1rem;
   --radius-full: 999px; /* search bar */
   --header-height: 4rem; /*header height*/
+}
+
+:root {
+  --type-normal: #a8a878;
+  --type-fire: #f08030;
+  --type-water: #6890f0;
+  --type-electric: #f8d030;
+  --type-grass: #78c850;
+  --type-ice: #98d8d8;
+  --type-fighting: #c03028;
+  --type-poison: #a040a0;
+  --type-ground: #e0c068;
+  --type-flying: #a890f0;
+  --type-psychic: #f85888;
+  --type-bug: #a8b820;
+  --type-rock: #b8a038;
+  --type-ghost: #705898;
+  --type-dragon: #7038f8;
+  --type-dark: #705848;
+  --type-steel: #b8b8d0;
+  --type-fairy: #ee99ac;
 }

@@ -1,5 +1,112 @@
 .pokedex {
   min-height: calc(100dvh - var(--header-height));
   display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  padding: 0 5rem;
+}
+
+.pokedex__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  justify-items: center;
+  align-items: center;
+  gap: var(--space-2xl);
+}
+
+.pokedex__paginator-container {
+  margin: 1.5rem 0;
+}
+
+.pokedex__load-more {
+  background-color: var(--primary-color);
+  font-family: var(--primary-font-family);
+  font-weight: var(--font-weight-medium);
+  color: var(--white-color);
+  padding: 0.75rem 2rem;
+  border: 1px solid black;
+  border-radius: var(--radius-full);
+  box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  transform: scale(1);
+  user-select: none;
+  cursor: pointer;
+}
+
+.pokedex__load-more:active {
+  transform: scale(0.9);
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.paginator__button {
+  background-color: var(--primary-color);
+  font-family: var(--primary-font-family);
+  font-size: var(--font-size-sm);
+  color: var(--white-color);
+  border: 0;
+  border-right: 1px solid var(--white-color);
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.paginator__button:last-child {
+  border-right: none;
+}
+
+.paginator__button--active {
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.paginator__button--active:first-child {
+  border-left: 1px solid var(--primary-color);
+}
+
+.paginator__button--active:last-child {
+  border-right: 1px solid var(--primary-color);
+}
+
+.paginator__dots {
+  background-color: #ff5f25ab;
+  font-family: var(--primary-font-family);
+  font-size: var(--font-size-sm);
+  color: var(--white-color);
+  padding: 0.25rem 0.75rem;
+  border-right: 1px solid var(--white-color);
+  user-select: none;
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 0.5rem;
+  background-color: var(--primary-color);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-top--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-top__icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--white-color);
 }

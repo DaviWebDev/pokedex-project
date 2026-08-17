@@ -21,7 +21,7 @@
 .search__input {
   font-family: var(--primary-font-family);
   font-size: var(--font-size-base);
-  width: clamp(18rem, 50dvw, 25rem);
+  width: clamp(15rem, 50dvw, 25rem);
   height: 3.5rem;
   border-radius: var(--radius-full);
   padding: 0 3rem 0 1.5rem;
