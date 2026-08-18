@@ -1,4 +1,4 @@
-import { captalize, getOptimizedImageUrl } from "../helpers/utils.js";
+import { captalize, getOptimizedImageUrl, extractIdFromUrl } from "../helpers/utils.js";
 import { typeColorMap } from "../helpers/pokemon-type.js";
 import { getPaginator } from "../helpers/pagination.js";
 
@@ -132,4 +132,27 @@ export function createPaginator(currentPage, totalPages, onPageClick) {
   });
 
   return createElement({ tag: "div", class: "pokedex__paginator", children: buttons });
+}
+
+export function createSuggestionItem(item) {
+  const containerItem = createElement({ tag: "div", class: "suggestion__item" });
+
+  const imageContainer = createElement({ tag: "div", class: "suggestion__image-container" });
+  const imageId = extractIdFromUrl(item.url);
+  const pokeImage = createElement({
+    tag: "img",
+    src: getOptimizedImageUrl(imageId),
+    class: "suggestion__image",
+    alt: item.name,
+    width: 200,
+    height: 200,
+  });
+  imageContainer.append(pokeImage);
+
+  const nameContainer = createElement({ tag: "div", class: "suggestion__name-container" });
+  const pokeName = createElement({ tag: "span", content: item.name, class: "suggestion__name" });
+  nameContainer.append(pokeName);
+
+  containerItem.append(imageContainer, nameContainer);
+  return containerItem;
 }

@@ -45,3 +45,31 @@ export async function fetchPokemonCount() {
     throw error;
   }
 }
+
+export async function fetchAllPokemonNames() {
+  try {
+    const response = await fetch(`${API_POKEDEX}/pokemon/?limit=2000`);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Erro ao buscar lista de Pokémon", error);
+    throw error;
+  }
+}
+
+export function searchPokemonByName(query, pokemonList) {
+  return pokemonList.filter((pokemon) => pokemon.name.toLowerCase().includes(query.toLowerCase()));
+}
+
+export async function fetchPokemonDetails(pokemonList) {
+  const fetchPromises = pokemonList.map((pokemon) => fetch(pokemon.url));
+  const response = await Promise.all(fetchPromises);
+
+  const jsonPromises = response.map((response) => response.json());
+  return Promise.all(jsonPromises);
+}
