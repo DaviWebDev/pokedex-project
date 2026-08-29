@@ -1,7 +1,7 @@
 import { fetchPokedex, filteredPokeList, fetchPokemonCount } from "../services/pokeApi.js";
-import { pokeGallery, paginatorContainer } from "./selectors.js";
+import { pokeGallery, paginatorContainer, pokedexContainer } from "./selectors.js";
 import { createCard, createLoadMoreButton, createScrollTopButton, createPaginator } from "./dom-builder.js";
-import { getPaginator } from "../helpers/pagination.js";
+import { hideLoading, showLoading } from "../helpers/loading.js";
 
 const mediaQuery = window.matchMedia("(width >= 48rem)");
 const LIMIT = 16;
@@ -88,9 +88,14 @@ mediaQuery.addEventListener("change", (e) => {
 
 /*render pokedex*/
 export async function renderPokedex() {
-  const params = new URLSearchParams(window.location.search);
-  const pageFromUrl = Number(params.get("page") || 1);
+  showLoading(pokedexContainer);
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const pageFromUrl = Number(params.get("page") || 1);
 
-  totalPages = Math.ceil((await fetchPokemonCount()) / LIMIT);
-  await loadPage(pageFromUrl);
+    totalPages = Math.ceil((await fetchPokemonCount()) / LIMIT);
+    await loadPage(pageFromUrl);
+  } finally {
+    hideLoading(pokedexContainer);
+  }
 }

@@ -1,10 +1,15 @@
 .pokedex {
-  min-height: calc(100dvh - var(--header-height));
+  position: relative;
+  flex: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: var(--space-2xl);
   padding: 0 5rem;
+}
+
+.pokedex.is-loaded .loading-overlay {
+  display: none;
 }
 
 .pokedex__grid {

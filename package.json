@@ -1,0 +1,13 @@
+{
+  "name": "pokedex-project",
+  "private": true,
+  "scripts": {
+    "dev": "npx live-server src",
+    "build:css": "node scripts/build-css.js",
+    "build:js": "npx esbuild src/js/pokedex.js --bundle --minify --format=iife --outfile=src/js/dist/pokedex.js && npx esbuild src/js/pokemon.js --bundle --minify --format=iife --outfile=src/js/dist/pokemon.js",
+    "build": "npm run build:css && npm run build:js"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3"
+  }
+}

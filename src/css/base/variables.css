@@ -1,8 +1,31 @@
+@font-face {
+  font-family: "Kanit";
+  src: url("../../assets/fonts/Kanit-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: "Kanit";
+  src: url("../../assets/fonts/Kanit-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: "Kanit";
+  src: url("../../assets/fonts/Kanit-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: optional;
+}
+
 :root {
   --primary-font-family: "Kanit", sans-serif;
   --primary-color: #ff5f25;
   --secondary-color: #fff4b8;
   --search-bar-color: #d9d9d9;
+  --heading-color: #898989;
+  --background-evolution-color: #efefef;
   --color-black: black;
   --white-color: white;
   --font-size-xs: 0.75rem; /* 12px */
@@ -27,6 +50,8 @@
   --radius-md: 1rem;
   --radius-full: 999px; /* search bar */
   --header-height: 4rem; /*header height*/
+  --search-bar-pokemon: 8.5rem;
+  --search-bar-pokedex: 10rem;
 }
 
 :root {

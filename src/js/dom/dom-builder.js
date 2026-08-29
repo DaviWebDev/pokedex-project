@@ -1,8 +1,8 @@
-import { captalize, getOptimizedImageUrl, extractIdFromUrl } from "../helpers/utils.js";
+import { captalize, getOptimizedImageUrl } from "../helpers/utils.js";
 import { typeColorMap } from "../helpers/pokemon-type.js";
 import { getPaginator } from "../helpers/pagination.js";
 
-function createElement({ tag, content, children, style, ...attributes } = {}) {
+export function createElement({ tag, content, children, style, ...attributes } = {}) {
   // 1. Validação inicial de segurança
   if (typeof tag !== "string" || !tag) return null;
   const el = document.createElement(tag);
@@ -55,55 +55,75 @@ function createElement({ tag, content, children, style, ...attributes } = {}) {
   return el;
 }
 
-function createElementCard(data, index) {
-  if (!data) {
-    return null;
+function createGenericCard(data, options = {}) {
+  const { clickable = false, showTypes = true, index = null, baseClass = "card", subClass = "" } = options;
+
+  const card = createElement({ tag: "div", class: clickable ? `${baseClass} ${baseClass}--clickable` : `${baseClass} ${subClass}` });
+
+  if (clickable) {
+    card.addEventListener("click", () => {
+      window.location.href = `./pokemon.html?name=${data.name}`;
+    });
   }
 
-  const fragment = document.createDocumentFragment();
+  const { name, types, sprite } = data;
+  const image = getOptimizedImageUrl(sprite);
 
-  const { id, name, types } = data;
-  const image = getOptimizedImageUrl(id);
-
-  const pokeImageContainer = createElement({ tag: "div", class: "card__image-container" });
+  const imageContainer = createElement({ tag: "div", class: `${baseClass}__image-container` });
   const pokeImage = createElement({
     tag: "img",
-    src: image,
     fetchpriority: index === 0 ? "high" : "auto",
-    class: "card__image",
-    alt: name,
     loading: index === 0 ? "eager" : "lazy",
+    src: image,
+    class: `${baseClass}__image`,
+    alt: name,
     width: "200",
     height: "200",
   });
-  pokeImageContainer.append(pokeImage);
+  imageContainer.append(pokeImage);
 
-  const pokeName = createElement({ tag: "h3", content: captalize(name), class: "card__name" });
+  const pokeName = createElement({ tag: "h3", content: captalize(name), class: `${baseClass}__name` });
+  card.append(imageContainer, pokeName);
 
-  const pokeTypeContainer = createElement({ tag: "div", class: "card__type-container" });
-
-  const pokeType = types.map((type) => {
-    const typeName = type.type.name;
-    const colorVar = typeColorMap[typeName];
-    return createElement({
-      tag: "span",
-      content: captalize(typeName),
-      class: `card__type`,
-      style: { backgroundColor: `var(${colorVar})` },
+  if (showTypes) {
+    const typeContainer = createElement({ tag: "div", class: `${baseClass}__type-container` });
+    const pokeType = types.map((type) => {
+      const typeName = type.type.name;
+      const colorVar = typeColorMap[typeName];
+      return createElement({
+        tag: "span",
+        content: captalize(typeName),
+        class: `${baseClass}__type`,
+        style: { backgroundColor: `var(${colorVar})` },
+      });
     });
-  });
-  pokeTypeContainer.append(...pokeType);
+    typeContainer.append(...pokeType);
+    card.append(typeContainer);
+  }
 
-  fragment.append(pokeImageContainer, pokeName, pokeTypeContainer);
-  return fragment;
+  return card;
 }
 
-export function createCard(content, index) {
-  const card = createElement({ tag: "article", class: "card" });
-  const cardContent = createElementCard(content, index);
+export function createCard(data, index) {
+  return createGenericCard(data, { clickable: true, showTypes: true, index, baseClass: "card" });
+}
 
-  card.append(cardContent);
-  return card;
+export function createCardBasic(data) {
+  return createGenericCard(data, { clickable: false, showTypes: true, baseClass: "card", subClass: "card--basic" });
+}
+
+export function createSuggestionItem(data) {
+  return createGenericCard(data, { clickable: true, showTypes: false, baseClass: "suggestion" });
+}
+
+export function createCardEvolution(data) {
+  return createGenericCard(data, { clickable: true, showTypes: true, baseClass: "card" });
+}
+
+export function createEvolutionArrow() {
+  const arrow = createElement({ tag: "div", class: "evolution-arrow" });
+  arrow.innerHTML = `<svg class="evolution-arrow__icon" aria-hidden="true"><use href="./assets/sprites.svg#arrow-right"></use></svg>`;
+  return arrow;
 }
 
 export function createLoadMoreButton() {
@@ -132,27 +152,4 @@ export function createPaginator(currentPage, totalPages, onPageClick) {
   });
 
   return createElement({ tag: "div", class: "pokedex__paginator", children: buttons });
-}
-
-export function createSuggestionItem(item) {
-  const containerItem = createElement({ tag: "div", class: "suggestion__item" });
-
-  const imageContainer = createElement({ tag: "div", class: "suggestion__image-container" });
-  const imageId = extractIdFromUrl(item.url);
-  const pokeImage = createElement({
-    tag: "img",
-    src: getOptimizedImageUrl(imageId),
-    class: "suggestion__image",
-    alt: item.name,
-    width: 200,
-    height: 200,
-  });
-  imageContainer.append(pokeImage);
-
-  const nameContainer = createElement({ tag: "div", class: "suggestion__name-container" });
-  const pokeName = createElement({ tag: "span", content: item.name, class: "suggestion__name" });
-  nameContainer.append(pokeName);
-
-  containerItem.append(imageContainer, nameContainer);
-  return containerItem;
 }

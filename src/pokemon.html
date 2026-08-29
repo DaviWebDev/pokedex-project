@@ -3,16 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browse each Pokémon's traits, including evolutionary chain and attributes." />
     <link rel="icon" href="./assets/pokeIcon.svg" type="image/svg+xml" />
     <title>Pokémon Wiki</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/base/reset.css" />
-    <link rel="stylesheet" href="./css/base/variables.css" />
-    <link rel="stylesheet" href="./css/base/global.css" />
-    <link rel="stylesheet" href="./css/components/header.css" />
-    <link rel="stylesheet" href="./css/pages/pokemon.css" />
+    <link rel="stylesheet" href="./css/style.min.css" />
   </head>
   <body>
     <header class="header">
@@ -33,5 +27,51 @@
         </ul>
       </nav>
     </header>
+    <div class="grid-layout">
+      <div class="search">
+        <div class="search__bar" role="search">
+          <label for="search-bar" class="sr-only">Search Pokémon</label>
+          <input type="search" id="search-bar" class="search__input" placeholder="Search" />
+          <svg class="search__icon" aria-hidden="true">
+            <use href="./assets/sprites.svg#search-icon"></use>
+          </svg>
+          <div data-js="suggestions-container" class="search__suggestions"></div>
+        </div>
+      </div>
+      <div class="loading-overlay">
+        <div class="loading-overlay__spinner" aria-label="Loading..."></div>
+      </div>
+      <main class="pokemon">
+        <h1 data-js="pokemon-heading" class="pokemon__heading"></h1>
+        <div class="pokemon__about">
+          <div data-js="card-about-container" class="pokemon__card-about"></div>
+          <div class="pokemon__extra">
+            <p data-js="pokemon-text" class="pokemon__text"></p>
+            <div class="pokemon__detail" data-js="pokemon-detail-container">
+              <p class="pokemon__info">Height<span data-js="pokemon-height-content" class="pokemon__info-content"></span></p>
+              <p class="pokemon__info">Weight<span data-js="pokemon-weight-content" class="pokemon__info-content"></span></p>
+              <p class="pokemon__info">Category<span data-js="pokemon-category-content" class="pokemon__info-content"></span></p>
+              <p class="pokemon__info">Abilities<span data-js="pokemon-abilities-content" class="pokemon__info-content"></span></p>
+            </div>
+          </div>
+        </div>
+        <div data-js="pokemon-evolutions-container" class="pokemon__evolutions"></div>
+      </main>
+      <div class="navigator-container">
+        <button data-js="navigator-prev" class="navigator-item navigator-item--prev" aria-label="Previous Pokémon">
+          <svg class="arrow-left">
+            <use href="./assets/sprites.svg#arrow-left"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="navigator-container">
+        <button data-js="navigator-next" class="navigator-item navigator-item--next" aria-label="Next Pokémon">
+          <svg class="arrow-right">
+            <use href="./assets/sprites.svg#arrow-right"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script type="module" src="./js/dist/pokemon.js"></script>
   </body>
 </html>
