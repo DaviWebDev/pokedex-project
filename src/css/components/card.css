@@ -54,8 +54,8 @@
 .card__type {
   font-family: var(--primary-font-family);
   color: white;
-  width: clamp(5rem, 50dvw, 6rem);
-  padding: 0.4rem 0;
+  width: clamp(10rem, 50dvw, 9rem);
+  padding: 0.5rem;
   text-align: center;
   border-radius: 0.75rem;
 }

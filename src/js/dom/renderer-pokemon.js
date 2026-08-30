@@ -29,7 +29,9 @@ function renderPokeText(pokemon) {
 function renderPokeBasicInfo(pokemon) {
   pokeHeight.textContent = `${pokemon.height}`;
   pokeWeight.textContent = `${pokemon.weight}`;
+  pokeWeight.title = `${pokemon.weight}`;
   pokeAbilities.textContent = `${captalize(pokemon.abilities)}`;
+  pokeAbilities.title = `${captalize(pokemon.abilities)}`;
 }
 
 function renderPokeCategory(pokemon) {
@@ -52,6 +54,7 @@ function renderCardEvoChain(pokemon, container) {
     }
   });
   container.replaceChildren(...elements);
+  container.classList.add("is-ready");
 }
 
 function renderNavigationArrows(neighbors) {
