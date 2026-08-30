@@ -14,7 +14,7 @@ export function categoryFormatted(name, removeWord) {
 
 export function getOptimizedImageUrl(spriteUrl) {
   if (!spriteUrl) return null;
-  if (spriteUrl.startsWith("/")) return spriteUrl;
+  if (spriteUrl.startsWith("http")) return spriteUrl;
   return `${IMAGE_PROXY_BASE}${encodeURIComponent(spriteUrl)}&output=webp`;
 }
 

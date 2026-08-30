@@ -19,4 +19,9 @@ const combinedCss = files.map((file) => fs.readFileSync(path.join(__dirname, "..
 
 const { styles } = new CleanCSS({ level: 2 }).minify(combinedCss);
 
-fs.writeFileSync(path.join(__dirname, "..", "src/css/style.min.css"), styles);
+const outputDir = path.join(__dirname, "..", "src/css/dist");
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
+}
+
+fs.writeFileSync(path.join(outputDir, "style.min.css"), styles);
