@@ -1,20 +1,20 @@
 @font-face {
   font-family: "Kanit";
-  src: url("../../assets/fonts/Kanit-Bold.woff2") format("woff2");
+  src: url("/assets/fonts/Kanit-Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: optional;
 }
 
 @font-face {
   font-family: "Kanit";
-  src: url("../../assets/fonts/Kanit-Medium.woff2") format("woff2");
+  src: url("/assets/fonts/Kanit-Medium.woff2") format("woff2");
   font-weight: 500;
   font-display: optional;
 }
 
 @font-face {
   font-family: "Kanit";
-  src: url("../../assets/fonts/Kanit-Regular.woff2") format("woff2");
+  src: url("/assets/fonts/Kanit-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: optional;
 }
